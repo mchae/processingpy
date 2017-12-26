@@ -17,3 +17,21 @@ def showGrid(s=20, black=155, num=True):
         text(str(height), 0, height)
         fill(0)
         #popStyle()
+        
+# Renders a vector object 'v' as an arrow and a position 'loc'
+def drawVector(v, pos, scayl):
+    pushMatrix()
+    arrowsize = 6
+    # Translate to position to render vector
+    translate(pos.x, pos.y)
+    stroke(0)
+    strokeWeight(2)
+    # Call vector heading function to get direction (pointing up is a heading of 0)
+    rotate(v.heading2D())
+    # Calculate length of vector & scale it to be bigger or smaller if necessary
+    len = v.mag()*scayl
+    # Draw three lines to make an arrow 
+    line(0, 0, len, 0)
+    line(len, 0, len-arrowsize, +arrowsize/2)
+    line(len, 0, len-arrowsize, -arrowsize/2)
+    popMatrix()
